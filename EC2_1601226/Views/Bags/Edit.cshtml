@@ -1,0 +1,91 @@
+﻿@model EC2_1601226.Models.Bag
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<h1 style="text-align:center">UPDATE BAG</h1>
+<hr />
+<div class="container">
+    <div class="card" style="background-color:lavender">
+        <div class="card-body">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <form asp-action="Edit" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
+                        <div class="form-group row">
+                            <label asp-for="Brand" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="Brand" class="form-control" />
+                                <span asp-validation-for="Brand" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Name" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label asp-for="Model" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="Model" class="form-control" />
+                                <span asp-validation-for="Model" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="ManufactureDate" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="ManufactureDate" class="form-control" />
+                                <span asp-validation-for="ManufactureDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Quantity" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="Quantity" class="form-control" />
+                                <span asp-validation-for="Quantity" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Price" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="Price" class="form-control" />
+                                <span asp-validation-for="Price" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Image" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <div class="form-group">
+                                    <img src="~/Images/@Model.Image" style="height:200px;width:200px" />
+                                    <input type="file" name="file" />
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Update" class="btn btn-primary" />
+                        </div>
+
+                        
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

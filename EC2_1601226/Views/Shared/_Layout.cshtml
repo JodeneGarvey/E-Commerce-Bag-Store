@@ -1,0 +1,147 @@
+﻿@inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> _signInManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EC2_1601226</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/fontawesome/css/all.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="~/css/site.css" />*@
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <link href="~/css/CustomStyleSheet.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <div class="logo">
+                    <img src="~/Images/baglogo.jpg" style="width:40px; height:40px; float:left" />
+                    <h1><a href="#">Online <span>Bag Store</span></a></h1>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <div class="account">
+                    <ul>
+                        <li>
+                            <div class="visible-xs">
+                                <h4><a>Call</a></h4>
+                                <p><i class="fa fa-phone"></i>&nbsp;(876)467-3567</p>
+                                <h4><a>Email</a></h4>
+                                <p><i class="fa fa-envelope"></i>&nbsp;bagstore@gmail.com</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-sm" id="navigation">
+        <ul class="navbar-nav" id="nav">
+            <li class="nav-item">
+                <a asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+            </li>
+            <li class="nav-item">
+                <a asp-area="" asp-controller="Home" asp-action="About">About</a>
+            </li>
+            <li class="nav-item">
+                <a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a>
+            </li>
+            @if (_signInManager.IsSignedIn(User) && User.IsInRole("Admin") || User.IsInRole("Member"))
+            {
+                <li class="nav-item">
+                    <a asp-area="" asp-controller="Bags" asp-action="Index">Manage Bags</a>
+                </li>
+            }
+
+
+            @if (_signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+            {
+
+                <li class="nav-item">
+                    <a asp-area="" asp-controller="Administration" asp-action="ListUsers">Manage Users</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-area="" asp-controller="Administration" asp-action="ListRoles">Manage Roles</a>
+                </li>
+
+            }
+
+
+
+        </ul>
+        
+        <ul class="navbar-nav" id="nav">
+            <li class="nav-item" id="nav-right">
+                <partial name="_LoginInfo" />
+            </li>
+
+            <li class="nav-item" id="nav-right">
+                <a asp-area="" asp-controller="ShoppingCart" asp-action="Index">Cart</a>
+            </li>
+        </ul>
+
+
+    </nav>
+    <br />
+    <div></div>
+
+    <div id="content">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+
+    </div>
+    <hr />
+
+
+
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+
+    @RenderSection("Scripts", required: false)
+
+
+    <footer id="footer">
+        <div class="container">
+            <!-- Row -->
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- footer logo -->
+                    <div class="footer-logo">
+                        <a href="#"><img src="~/Images/baglogo.jpg" alt="logo"></a>
+                    </div>
+                    <!-- /footer logo -->
+                    <!-- footer follow -->
+                    <ul class="footer-follow">
+                        <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                    </ul>
+                    <!-- /footer follow -->
+                    <!-- footer copyright -->
+                    <div class="footer-copyright">
+                        <p>Copyright &copy; @DateTime.Now.Year All Rights Reserved. <a asp-controller="Home" asp-action="About">BAG STORE</a></p>
+                    </div>
+                    <!-- /footer copyright -->
+                </div>
+            </div>
+            <!-- /Row -->
+        </div>
+        <!-- /Container -->
+    </footer>
+</body>
+</html>

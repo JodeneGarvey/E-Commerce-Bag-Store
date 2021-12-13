@@ -1,0 +1,99 @@
+﻿@model EC2_1601226.ViewModels.BagCreateViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<section>
+    <img style="height:300px;width:100%" src="..\Images\bagbanner.jpg" />
+</section>
+<h1 style="text-align:center">ADD BAG</h1>
+<hr />
+<div class="container">
+    <div class="card" style="background-color:lavender">
+        <div class="card-body" style="text-align:center">
+            <div class="row" style="text-align:center">
+                <div class="col-md-6">
+                    <form enctype="multipart/form-data" asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group row">
+                            <label asp-for="Brand" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="Brand" class="form-control" />
+                                <span asp-validation-for="Brand" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Name" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="Name" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group row">
+                            <label asp-for="Model" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="Model" class="form-control" />
+                                <span asp-validation-for="Model" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="ManufactureDate" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="ManufactureDate" class="form-control" />
+                                <span asp-validation-for="ManufactureDate" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Quantity" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="Quantity" class="form-control" />
+                                <span asp-validation-for="Quantity" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Price" class="col-sm-2 col-form-label"></label>
+                            <div class="col-sm-10">
+                                <input asp-for="Price" class="form-control" />
+                                <span asp-validation-for="Price" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label asp-for="Image" class="col-sm-2 col-form-label"></label>
+                                <div class="col-sm-10">
+                                    <div class="custom-file">
+                                        <input asp-for="Image" class="form-control custom-file-input" />
+                                        <label class="custom-file-label">Choose File...</label>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="form-group" style="text-align:center">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+
+
+                        @section Scripts{ 
+                            <script>
+                                $(document).ready(function () {
+                                    $('.custom-file-input').on("change", function () {
+                                        var fileName = $(this).val().split("\\").pop();
+                                        $(this).next('.custom-file-label').html(fileName);
+                                    });
+                                })
+                            </script>
+                        }
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Index" style="text-align:center">Back to List</a>
+</div>
+
+@*@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}*@
